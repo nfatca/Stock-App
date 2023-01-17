@@ -13,6 +13,7 @@ import { Formik, Form } from "formik";
 import { TextField } from "@mui/material";
 import LoadingButton from "@mui/lab/LoadingButton";
 import * as yup from "yup";
+import { login } from "../hooks/useAuthCall";
 
 const loginSchema = yup.object().shape({
   email: yup
@@ -79,7 +80,7 @@ const Login = () => {
             validationSchema={loginSchema}
             onSubmit={(values, actions) => {
               //! Login(values)
-
+              login(values);
               actions.resetForm();
               actions.setSubmitting(false);
             }}
