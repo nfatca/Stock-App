@@ -14,6 +14,8 @@ import { TextField } from "@mui/material";
 import LoadingButton from "@mui/lab/LoadingButton";
 import * as yup from "yup";
 import useAuthCall from "../hooks/useAuthCall";
+import { useEffect } from "react";
+import { toastErrorNotify, toastSuccessNotify } from "../helper/ToastNotify";
 
 const loginSchema = yup.object().shape({
   email: yup
@@ -38,6 +40,17 @@ const Login = () => {
   const navigate = useNavigate();
   const { currentUser, error, loading } = useSelector((state) => state?.auth);
   const { login } = useAuthCall();
+
+  useEffect(() => {
+    if (currentUser) {
+      navigate("/stock");
+      toastSuccessNotify("Login Performed");
+    }
+  }, [currentUser]);
+
+  useEffect(() => {
+    error && toastErrorNotify("Login can not be performed");
+  }, [error]);
 
   return (
     <Container maxWidth="lg">
@@ -82,6 +95,7 @@ const Login = () => {
             onSubmit={(values, actions) => {
               //! Login(values)
               login(values);
+              navigate("/stock");
               actions.resetForm();
               actions.setSubmitting(false);
             }}
