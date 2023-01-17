@@ -8,6 +8,10 @@ import image from "../assets/result.svg";
 import { Link, useNavigate } from "react-router-dom";
 
 import { useSelector } from "react-redux";
+import { Formik } from "formik";
+import { Fragment } from "react";
+
+const loginSchema = {};
 
 const Login = () => {
   const navigate = useNavigate();
@@ -49,6 +53,17 @@ const Login = () => {
           >
             Login
           </Typography>
+
+          <Formik
+            initialValues={{ email: "", password: "" }}
+            validationSchema={loginSchema}
+            onSubmit={(values, actions) => {
+              //! Login(values)
+
+              actions.resetForm();
+              actions.setSubmitting(false);
+            }}
+          ></Formik>
 
           <Box sx={{ textAlign: "center", mt: 2 }}>
             <Link to="/register">Do you have not an account?</Link>
