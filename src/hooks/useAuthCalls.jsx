@@ -10,7 +10,7 @@ import {
 } from "../features/authSlice";
 import { toastSuccessNotify, toastErrorNotify } from "../helper/ToastNotify";
 
-const BASE_URL = "https://14148.fullstack.clarusway.com/";
+const baseURL = "https://14148.fullstack.clarusway.com/";
 
 const useAuthCalls = () => {
   const dispatch = useDispatch();
@@ -21,7 +21,7 @@ const useAuthCalls = () => {
 
     try {
       const { data } = await axios.post(
-        `${BASE_URL}account/auth/login/`,
+        `${baseURL}account/auth/login/`,
         userInfo
       );
       dispatch(loginSuccess(data));
@@ -36,7 +36,7 @@ const useAuthCalls = () => {
     dispatch(fetchStart());
 
     try {
-      await axios.post(`${BASE_URL}account/auth/logout/`);
+      await axios.post(`${baseURL}account/auth/logout/`);
       dispatch(logoutSuccess());
     } catch (error) {
       console.log(error);
@@ -48,7 +48,7 @@ const useAuthCalls = () => {
     dispatch(fetchStart());
     try {
       const { data } = await axios.post(
-        `${BASE_URL}account/register/`,
+        `${baseURL}account/register/`,
         userInfo
       );
       dispatch(registerSuccess(data));
