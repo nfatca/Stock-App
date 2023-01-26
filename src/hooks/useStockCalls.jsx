@@ -39,6 +39,13 @@ const useStockCalls = () => {
 
   const deleteFirm = (id) => deleteStockData("firms", id);
 
+  //!--------------------------- PUT CALLS--------------------------------------------
+
+  // const putStockData = async (url,id) => {
+  // try {
+
+  // }
+  // }
   return { getFirms, getSales, deleteFirm };
 };
 
