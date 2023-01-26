@@ -14,6 +14,12 @@ const Firms = () => {
   const { getFirms } = useStockCalls();
   const { firms } = useSelector((state) => state.stock);
   const [open, setOpen] = useState(false);
+  const [info, setInfo] = useState({
+    name: "",
+    phone: "",
+    address: "",
+    image: "",
+  });
 
   // const dispatch = useDispatch();
   // const { token } = useSelector((state) => state.auth);
@@ -48,7 +54,7 @@ const Firms = () => {
         NEW FIRM
       </Button>
 
-      <FirmModal open={open} setOpen={setOpen} />
+      <FirmModal open={open} setOpen={setOpen} info={info} setInfo={setInfo} />
 
       {firms?.length > 0 && (
         <Grid container justifyContent="center" gap={3}>
