@@ -44,16 +44,30 @@ const useStockCalls = () => {
   const postStockData = async (info, url) => {
     try {
       await axiosWithToken.post(`stock/${url}/`, info);
-      toastSuccessNotify(`${url} successfuly deleted`);
+      toastSuccessNotify(`${url} successfuly added`);
       getStockData(url);
     } catch (error) {
       console.log(error);
-      toastErrorNotify(`${url} error deleting stock`);
+      toastErrorNotify(`${url} error adding stock`);
     }
   };
   const postFirm = (info) => postStockData(info, "firms");
 
-  return { getFirms, getSales, deleteFirm, postFirm };
+  //!--------------------------- PUT CALLS--------------------------------------------
+
+  const putStockData = async (info, url) => {
+    try {
+      await axiosWithToken.put(`stock/${url}/${info.id}/`, info);
+      toastSuccessNotify(`${url} successfuly updated`);
+      getStockData(url);
+    } catch (error) {
+      console.log(error);
+      toastErrorNotify(`${url} error updating stock`);
+    }
+  };
+  const putFirm = (info) => putStockData(info, "firms");
+
+  return { getFirms, getSales, deleteFirm, postFirm, putFirm };
 };
 
 export default useStockCalls;
