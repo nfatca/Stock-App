@@ -4,19 +4,19 @@ import { flexCenter, modalStyle } from "../../styles/globalStyle";
 import { Button, TextField } from "@mui/material";
 import useStockCalls from "../../hooks/useStockCalls";
 
-export default function BrandModal({ open, setOpen, info, setInfo }) {
-  const { postBrand, putBrand } = useStockCalls();
+export default function ProductModal({ open, setOpen, info, setInfo }) {
+  const { postFirm, putFirm } = useStockCalls();
   const handleSubmit = (e) => {
     e.preventDefault();
     if (info.id) {
-      putBrand(info);
+      putFirm(info);
     } else {
-      postBrand(info);
+      postFirm(info);
     }
     setOpen(false);
     setInfo();
   };
-  console.log(info);
+  // console.log(info);
   const handleChange = (e) => {
     const { name, value } = e.target;
     setInfo({ ...info, [name]: value });
@@ -35,12 +35,30 @@ export default function BrandModal({ open, setOpen, info, setInfo }) {
         <Box sx={modalStyle}>
           <Box sx={flexCenter} component="form" onSubmit={handleSubmit}>
             <TextField
-              label="Brand Name"
+              label="Firm Name"
               name="name"
               id="name"
               type="text"
               variant="outlined"
               value={info?.name || ""}
+              onChange={handleChange}
+            />
+            <TextField
+              label="Phone"
+              name="phone"
+              id="phone"
+              type="tel"
+              variant="outlined"
+              value={info?.phone || ""}
+              onChange={handleChange}
+            />
+            <TextField
+              label="Address"
+              name="address"
+              id="address"
+              type="text"
+              variant="outlined"
+              value={info?.address || ""}
               onChange={handleChange}
             />
             <TextField
@@ -53,7 +71,7 @@ export default function BrandModal({ open, setOpen, info, setInfo }) {
               onChange={handleChange}
             />
             <Button type="submit" variant="contained">
-              Submit Brand
+              Submit Form
             </Button>
           </Box>
         </Box>

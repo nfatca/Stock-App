@@ -10,11 +10,11 @@ const useStockCalls = () => {
 
   const getStockData = async (url) => {
     dispatch(fetchStart());
-    console.log("starting");
+    // console.log("starting");
     try {
       const { data } = await axiosWithToken.get(`stock/${url}/`);
       dispatch(getSuccess({ data, url }));
-      console.log(data);
+      // console.log(data);
     } catch (error) {
       dispatch(fetchFail());
       console.log(error);
@@ -23,6 +23,8 @@ const useStockCalls = () => {
 
   const getFirms = () => getStockData("firms");
   const getBrands = () => getStockData("brands");
+  const getCategories = () => getStockData("categories");
+  const getProducts = () => getStockData("products");
   const getSales = () => getStockData("sales");
 
   //!------------------------- DELETE CALLS ---------------------------------------
@@ -74,6 +76,8 @@ const useStockCalls = () => {
   return {
     getFirms,
     getSales,
+    getCategories,
+    getProducts,
     getBrands,
     deleteFirm,
     deleteBrand,

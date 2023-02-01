@@ -4,7 +4,6 @@ import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import BrandCard from "../components/BrandCard";
 import BrandModal from "../components/modals/BrandModal";
-import FirmModal from "../components/modals/FirmModal";
 import useStockCalls from "../hooks/useStockCalls";
 
 const Brands = () => {

@@ -21,3 +21,16 @@ export const flexCenter = {
   justifyContent: "center",
   gap: 2,
 };
+export const selectCenter = {
+  display: "flex",
+  flexDirection: { xs: "column", sm: "row" },
+  justifyContent: "center",
+  gap: 2,
+};
+
+export const arrowStyle = {
+  display: "flex",
+  justifyContent: "center",
+  cursor: "pointer",
+  "&:hover": { color: "red" },
+};

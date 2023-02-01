@@ -1,5 +1,4 @@
 import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import { flexCenter, modalStyle } from "../../styles/globalStyle";
 import { Button, TextField } from "@mui/material";
