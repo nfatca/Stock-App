@@ -17,11 +17,16 @@ import UpgradeIcon from "@mui/icons-material/Upgrade";
 import { arrowStyle, btnHoverStyle, selectCenter } from "../styles/globalStyle";
 import useSortColumn from "../hooks/useSortColumn";
 import ProductModal from "../components/modals/ProductModal";
-
 import { MultiSelectBox, MultiSelectBoxItem } from "@tremor/react";
 
 const Products = () => {
-  const { getBrands, getCategories, getProducts } = useStockCalls();
+  const {
+    getBrands,
+    getCategories,
+    getProducts,
+    getProCatBrands,
+    deleteProduct,
+  } = useStockCalls();
   const { products, brands } = useSelector((state) => state.stock);
   const [open, setOpen] = useState(false);
   const [info, setInfo] = useState({});
@@ -29,9 +34,10 @@ const Products = () => {
   const [selectedProducts, setselectedProducts] = useState([]);
 
   useEffect(() => {
-    getBrands();
-    getCategories();
-    getProducts();
+    // getBrands();
+    // getCategories();
+    // getProducts();
+    getProCatBrands();
   }, []);
 
   // Siralama da kullanilacak toggle state'i
@@ -52,8 +58,6 @@ const Products = () => {
     ?.filter((item) => selectedBrands?.includes(item.brand))
     .map((item) => item.name);
 
-  console.log(brands);
-
   return (
     <Box>
       <Typography variant="h4" color="error" mb={3}>
@@ -64,7 +68,7 @@ const Products = () => {
         NEW PRODUCT
       </Button>
       <Box sx={selectCenter}>
-        <MultiSelectBox
+        {/* <MultiSelectBox
           handleSelect={(item) => setSelectedBrands(item)}
           placeholder="Select Brand"
         >
@@ -84,7 +88,7 @@ const Products = () => {
           {filterProducts?.map((item) => (
             <MultiSelectBoxItem key={item} value={item} text={item} />
           ))}
-        </MultiSelectBox>
+        </MultiSelectBox> */}
       </Box>
       <ProductModal
         open={open}
@@ -155,7 +159,9 @@ const Products = () => {
                     <TableCell align="center">{product.name}</TableCell>
                     <TableCell align="center">{product.stock}</TableCell>
                     <TableCell align="center" sx={btnHoverStyle}>
-                      <DeleteOutlineIcon />
+                      <DeleteOutlineIcon
+                        onClick={() => deleteProduct(product.id)}
+                      />
                     </TableCell>
                   </TableRow>
                 ))}
