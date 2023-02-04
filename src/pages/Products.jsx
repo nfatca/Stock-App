@@ -18,6 +18,7 @@ import { arrowStyle, btnHoverStyle, selectCenter } from "../styles/globalStyle";
 import useSortColumn from "../hooks/useSortColumn";
 import ProductModal from "../components/modals/ProductModal";
 import { MultiSelectBox, MultiSelectBoxItem } from "@tremor/react";
+import MultiSelect from "../components/MultiSelect";
 
 const Products = () => {
   const {
@@ -32,12 +33,12 @@ const Products = () => {
   const [info, setInfo] = useState({});
   const [selectedBrands, setSelectedBrands] = useState([]);
   const [selectedProducts, setselectedProducts] = useState([]);
-
+  // console.log(products);
   useEffect(() => {
-    // getBrands();
-    // getCategories();
-    // getProducts();
-    getProCatBrands();
+    getBrands();
+    getCategories();
+    getProducts();
+    // getProCatBrands();
   }, []);
 
   // Siralama da kullanilacak toggle state'i
