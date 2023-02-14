@@ -17,28 +17,23 @@ import UpgradeIcon from "@mui/icons-material/Upgrade";
 import { arrowStyle, btnHoverStyle, selectCenter } from "../styles/globalStyle";
 import useSortColumn from "../hooks/useSortColumn";
 import ProductModal from "../components/modals/ProductModal";
-import { MultiSelectBox, MultiSelectBoxItem } from "@tremor/react";
 import MultiSelect from "../components/MultiSelect";
 
 const Products = () => {
-  const {
-    getBrands,
-    getCategories,
-    getProducts,
-    getProCatBrands,
-    deleteProduct,
-  } = useStockCalls();
+  const { getBrands, getCategories, getProducts, deleteProduct } =
+    useStockCalls();
   const { products, brands } = useSelector((state) => state.stock);
   const [open, setOpen] = useState(false);
   const [info, setInfo] = useState({});
   const [selectedBrands, setSelectedBrands] = useState([]);
   const [selectedProducts, setselectedProducts] = useState([]);
-  // console.log(products);
+
+  console.log(brands);
+
   useEffect(() => {
     getBrands();
     getCategories();
     getProducts();
-    // getProCatBrands();
   }, []);
 
   // Siralama da kullanilacak toggle state'i
@@ -68,34 +63,22 @@ const Products = () => {
       <Button variant="contained" onClick={() => setOpen(true)}>
         NEW PRODUCT
       </Button>
-      <Box sx={selectCenter}>
-        {/* <MultiSelectBox
-          handleSelect={(item) => setSelectedBrands(item)}
-          placeholder="Select Brand"
-        >
-          {brands?.map((item) => (
-            <MultiSelectBoxItem
-              key={item.name}
-              value={item.name}
-              text={item.name}
-            />
-          ))}
-        </MultiSelectBox>
 
-        <MultiSelectBox
-          handleSelect={(item) => setselectedProducts(item)}
-          placeholder="Select Product"
-        >
-          {filterProducts?.map((item) => (
-            <MultiSelectBoxItem key={item} value={item} text={item} />
-          ))}
-        </MultiSelectBox> */}
-      </Box>
       <ProductModal
         open={open}
         setOpen={setOpen}
         info={info}
         setInfo={setInfo}
+      />
+
+      <MultiSelect
+        data1={brands}
+        data2={products}
+        key1="name"
+        key2="brand"
+        firstNames={selectedBrands}
+        setFirstNames={setSelectedBrands}
+        setSecondNames={setselectedProducts}
       />
 
       {sortedData?.length > 0 && (

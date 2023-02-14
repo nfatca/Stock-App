@@ -11,9 +11,9 @@ import UpgradeIcon from "@mui/icons-material/Upgrade";
 import VerticalAlignBottomIcon from "@mui/icons-material/VerticalAlignBottom";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 
-import useSortColumn from "../hooks/useSortColumn";
-import { arrowStyle, btnHoverStyle } from "../styles/globalStyle";
-import useStockCalls from "../hooks/useStockCalls";
+import useSortColumn from "../../hooks/useSortColumn";
+import { arrowStyle, btnHoverStyle } from "../../styles/globalStyle";
+import useStockCalls from "../../hooks/useStockCalls";
 import { useSelector } from "react-redux";
 import { Typography } from "@mui/material";
 
@@ -33,6 +33,10 @@ const ProductsTable = ({ selectedProducts, selectedBrands }) => {
     columnObj
   );
 
+  //? Verilen item secilen brand'larin icerisinde varsa true dondurur
+  //? VEYA hic brand secilmemisse true dondurur.aksinde false dondurur.
+  //? bu fonksiyon filter() icerisinde yazilacagi icin false dondurmesi
+  //? durumunda filter bir suzme yapmamis olur.
   const isBrandSelected = (item) =>
     selectedBrands.includes(item.brand) || selectedBrands.length === 0;
 

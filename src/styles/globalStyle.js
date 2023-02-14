@@ -40,3 +40,9 @@ export const arrowStyle = {
   cursor: "pointer",
   "&:hover": { color: "red" },
 };
+
+export const flexColumn = {
+  display: "flex",
+  flexDirection: "column",
+  gap: 2,
+};
